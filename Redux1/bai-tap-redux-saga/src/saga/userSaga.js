@@ -1,6 +1,6 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
-import { GET_USERS, SET_USERS } from '../redux/action';
+import { GET_USERS, SET_USERS,DELETE_USER } from '../redux/action';
 
 // // Worker saga cho action GET_USERS
 // function* getUsersSaga() {
@@ -30,7 +30,7 @@ import { GET_USERS, SET_USERS } from '../redux/action';
 //     yield takeEvery(DELETE_USER, deleteUserSaga);
 // }
 
-const BaseURL = "https://jsonplaceholder.typicode.com/users";
+const BaseURL = "https://642f6e88c26d69edc87c6b2e.mockapi.io/users";
 
 function* getUsers(action) {
     console.log('Saga: getUsers');
@@ -43,7 +43,21 @@ function* getUsers(action) {
         console.log("error - getUser : ", error);
     }
 }
+function* deleteUser(action) {
+    console.log(action);
+    let id = action.payload.id;
+    console.log('Saga: deleteUser');
+    try {
+        const response = yield axios.delete(BaseURL+'/'+id);
+        console.log('XL: rootSaga Dispatch SET_USERS');
+        yield put({ type: GET_USERS, payload: response.data });
+        console.log(2);
+    } catch (error) {
+        console.log("error - getUser : ", error);
+    }
+}
 
 export default function* rootSaga() {
     yield takeLatest(GET_USERS, getUsers);
+    yield takeLatest(DELETE_USER, deleteUser);
 }

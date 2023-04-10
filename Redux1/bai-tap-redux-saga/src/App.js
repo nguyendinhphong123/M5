@@ -1,5 +1,5 @@
 import React from "react";
-import { GET_USERS } from "./redux/action";
+import { GET_USERS,DELETE_USER } from "./redux/action";
 import { useDispatch, useSelector } from 'react-redux';
 
 function App(props) {
@@ -9,6 +9,10 @@ function App(props) {
 
   const getUsers = () => {
     dispatch({ type: GET_USERS });
+    console.log('1');
+  };
+  const deleteUser = (id) => {
+    dispatch({ type: DELETE_USER,payload: {id} });
     console.log('1');
   };
 
@@ -34,7 +38,7 @@ function App(props) {
               <td>{user.email}</td>
               <td>{user.website}</td>
               <td>
-                <button>
+                <button onClick={() => deleteUser(user.id)}>
                   Delete
                 </button>
               </td>
