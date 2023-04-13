@@ -1,18 +1,25 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { DELETE_USER } from '../redux/action';
+import React from "react";
+import { GET_USERS,DELETE_USER } from "../redux/action";
+import { useDispatch, useSelector } from 'react-redux';
 
-const UserList = () => {
-  const users = useSelector(state => state.users);
+function UserList(props) {
   const dispatch = useDispatch();
+  const users = useSelector(state => state.users);
+  const error = useSelector(state => state.error);
 
-  const handleDeleteUser = (id) => {
-    dispatch(deleteUser(id));
-  }
+  const getUsers = () => {
+    dispatch({ type: GET_USERS });
+    console.log('1');
+  };
+  const deleteUser = (id) => {
+    dispatch({ type: DELETE_USER,payload: {id} });
+    console.log('1');
+  };
 
   return (
     <div>
-      <h2>User List</h2>
+      <h1>User List</h1>
+      <button onClick={getUsers}>Get Users</button> {/* Thêm xử lý click */}
       <table>
         <thead>
           <tr>
@@ -24,14 +31,17 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map(user => (
+          {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.website}</td>
               <td>
-                <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                <button onClick={() => deleteUser(user.id)}>
+                  Delete
+                </button>
+                
               </td>
             </tr>
           ))}

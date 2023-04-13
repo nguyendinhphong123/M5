@@ -1,7 +1,9 @@
 import {
     FETCH_POSTS_SUCCESS,
     FETCH_POSTS_FAILURE,
-    ADD_POST
+    ADD_POST,
+    ADD_POST_SUCCESS,
+  ADD_POST_FAILURE,
   } from "./action";
   
   const initialState = {
@@ -23,6 +25,18 @@ import {
         ...state,
         posts: [...state.posts, action.payload]
       };
+      case ADD_POST_SUCCESS:
+      return {      
+        ...state,
+        posts: [...state.posts, action.payload],
+        error: null,
+      };
+      case ADD_POST_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
       case FETCH_POSTS_FAILURE:
         return {
           ...state,
