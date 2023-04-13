@@ -52,6 +52,7 @@ function* deleteUser(action) {
         console.log('XL: rootSaga Dispatch SET_USERS');
         yield put({ type: GET_USERS, payload: response.data });
         console.log(2);
+        alert('Đã xóa thành công');
     } catch (error) {
         console.log("error - getUser : ", error);
     }

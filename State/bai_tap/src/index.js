@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
+import App from './App';
 import Todo from './Todo';
 import TodoFun from './TodoFun';
 import Calculator from './Calculator';
@@ -10,10 +10,10 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>
-    {/* <App />, */}
+    <App />,
     {/* <Todo />, */}
     {/* <TodoFun /> */}
-    <Calculator/>
+    {/* <Calculator/> */}
     </>
 );
 

@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
+import App from './App';
 import Example from './Example';
+import Selector from './components/Selector';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Example/>
+  <>
+  <App/>
+  {/* <Selector/> */}
+  {/* <Example/> */}
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
